@@ -30,7 +30,7 @@ w0Matrix <- function(nDomains) {
 #' @export
 wMatrix <- function(nDomains) {
   w0 <- w0Matrix(nDomains=nDomains)
-  w0 / rowSums(W0)
+  w0 / rowSums(w0)
 }
 
 #' Closure for a counter
