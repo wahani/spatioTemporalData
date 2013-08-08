@@ -15,7 +15,7 @@ simConstructSetupSets <- function(nDomains, nTime, sarCorr, arCorr) {
   setupSets
 }
 
-#' simRunMarhuenda
+#' simRun
 #' 
 #' @description Run simulation for given simSetup
 #' 
@@ -26,12 +26,12 @@ simConstructSetupSets <- function(nDomains, nTime, sarCorr, arCorr) {
 #' 
 #' @examples
 #' setup <- simSetupMarhuenda(nDomains=100, nTime=c(10, 20), sarCorr=0.5, arCorr=c(0, 0.5))
-#' output <- simRunMarhuenda(setup)
+#' output <- simRun(setup)
 #' length(slot(output[[1]], "data"))
 #' dat <- slot(output[[1]], "data")[[1]]
 #' summary(dat)
 #' @export
-simRunMarhuenda <- function(setup, mc = F) {
+simRunSetup <- function(setup, mc = F) {
   # Run simulation
   setupSets <- simConstructSetupSets(slot(setup, "nDomains"), 
                                      slot(setup, "nTime"), 
@@ -46,6 +46,7 @@ simRunMarhuenda <- function(setup, mc = F) {
                      setup
                    }, 
                    setup)
+ 
   simRun(setups, mc = mc)
 }
 
@@ -65,7 +66,7 @@ simRunMarhuenda <- function(setup, mc = F) {
 #' output <- simRunMarhuenda(setup)
 #' @export
 simSetupMarhuenda <- function(nDomains, nTime, sarCorr, arCorr, n = 1000) {
-  simMarhuendaCheckInput(nDomains, nTime, sarCorr, arCorr, n)
+  #simMarhuendaCheckInput(nDomains, nTime, sarCorr, arCorr, n)
   setup <- new("simSetup", 
                n = n,
                nDomains = nDomains,
@@ -74,6 +75,7 @@ simSetupMarhuenda <- function(nDomains, nTime, sarCorr, arCorr, n = 1000) {
                arCorr = arCorr,
                sarVar = reSar1Var,
                arVar = reAr1Var,
+               seVar = seSigmaClosure(nDomains, nTime),
                sigma1 = 1,
                sigma2 = 1,
                #               sigma = seSigmaClosure(nDomains, nTime),
@@ -81,12 +83,13 @@ simSetupMarhuenda <- function(nDomains, nTime, sarCorr, arCorr, n = 1000) {
                beta = c(0,1)
                #                xdt = spGenerator(nDomains, nTime)
   )
+  setup
 }
 
 simMarhuendaCheckInput <- function(nDomains, nTime, sarCorr, arCorr, n) {
   if (any(!(nDomains > 1))) stop("nDomains must be larger than 1 - as in 'spatial' data!?")
   if (any(!(nTime > 1))) stop("nTime must be larger than 1 - as in 'temporal' data!?")
-  if (any(!(sarCorr >= 0 & sarCorr < 1))) stop("Correlation is defined between 0 and 1. But nice try.")
-  if (any(!(arCorr >= 0 & arCorr < 1))) stop("Correlation is defined between 0 and 1. But nice try.")
+  #if (any(!(sarCorr >= 0 & sarCorr < 1))) stop("Correlation is defined between 0 and 1. But nice try.")
+  #if (any(!(arCorr >= 0 & arCorr < 1))) stop("Correlation is defined between 0 and 1. But nice try.")
   if (any(!(n > 1))) stop("At this time the number of simulations need to be larger than 1, sorry.")
 }

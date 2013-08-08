@@ -1,4 +1,8 @@
-# Class and method Definition for simSetup
+#' Class for sumulation setups
+#'
+#' @name simSetup
+#' @aliases simSetup-class
+#' @exportClass simSetup
 setClass(Class="simSetup", representation(n = "numeric",
                                           nDomains = "numeric",
                                           nTime = "numeric",
@@ -6,6 +10,7 @@ setClass(Class="simSetup", representation(n = "numeric",
                                           sarCorr = "numeric",
                                           sarVar = "function",
                                           arVar = "function",
+                                          seVar = "function",
                                           sigma1 = "numeric",
                                           sigma2 = "numeric",
                                           sigma = "matrix",
@@ -24,7 +29,7 @@ simRunner <- function(setup) {
   Z <- reZ(nDomains=setup@nDomains, nTime=setup@nTime)
   xdt <- spGenerator(nDomains=setup@nDomains, nTime=setup@nTime)
   re <- reGeneratorMC(omega=omegaList, n = setup@n)
-  se <- seGenerator(nDomains=setup@nDomains, nTime=setup@nTime, n=setup@n)
+  se <- seGenerator(nDomains=setup@nDomains, nTime=setup@nTime, n=setup@n, sigmaFun = setup@seVar)
   
   y <- setup@beta[1] + setup@beta[2] * xdt + Z %*% re + se
   
