@@ -8,6 +8,13 @@ seSigmaClosure <- function(nDomains, nTime) {
   sigmaFun <- function(d, t) (alpha1 - alpha0) * (nTime * (d-1) + t - 1) / (nDomains * nTime) + alpha0
   function() unlist(lapply(1:nDomains, sigmaFun, t = 1:nTime))
 }
+# function (nDomains, nTime) {
+#   force(nDomains)
+#   force(nTime)
+#   alpha0 = 0.8
+#   alpha1 = 1.2
+#   function(d, t) (alpha1 - alpha0) * (nTime * (d - 1) + t - 1)/(nDomains * nTime) + alpha0
+# }
 
 
 #' Function for generating Sampling errors with deterministic variance parameter
