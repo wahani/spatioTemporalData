@@ -135,6 +135,7 @@ merge.simSetup <- function(setup1, setup2) {
                 (setup1@nDomains+1):(setup1@nDomains+setup2@nDomains)] <- 
     setup2@neighbourHood
   setup@neighbourHood <- neighbourHood
+  setup@sigmaSE <- c(setup1@sigmaSE, setup2@sigmaSE)
   setup
 }
 

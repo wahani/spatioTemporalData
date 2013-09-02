@@ -13,7 +13,8 @@ setClass(Class="simSetup", representation(n = "numeric",
                                           seVar = "function",
                                           sigma1 = "numeric",
                                           sigma2 = "numeric",
-                                          sigma = "matrix",
+                                          sigma = "matrix", # Bezeichnung
+                                          sigmaSE = "numeric",
                                           neighbourHood = "matrix",
                                           beta = "numeric",
                                           xdt = "function",
@@ -39,6 +40,7 @@ simRunner <- function(setup) {
                                   data.frame(y = y, x = xdt, Domain = rep(1:nDomains, each = nTime), Time = rep(1:nTime, nDomains))
                                 }, 
                                 xdt = xdt, setup@nDomains, setup@nTime)
+  slot(setup, "sigmaSE") <- setup@seVar()
   setup
 }        
 
