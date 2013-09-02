@@ -1,9 +1,8 @@
-\name{simSetupContamination}
-\alias{simSetupContamination}
-\title{simSetupContamination}
+\name{simRunContamination}
+\alias{simRunContamination}
+\title{simRunContamination}
 \usage{
-  simSetupContamination(nDomains, nTime, sarCorr, arCorr,
-    seVar = seSigmaContClosure(nDomains, nTime, nDomainsCont = 0, contFactor = 0, randomDomains = FALSE),
+  simRunContamination(nDomains, nTime, sarCorr, arCorr,
     spatialCont = list(sigma = 1, sigmaCont = 10, nDomainsCont = 2),
     temporalCont = list(sigma = 1, sigmaCont = 10, nDomainsCont = 2),
     spatioTemporalMessup = FALSE, n = 200)
@@ -22,10 +21,16 @@
   can be a vector.}
 
   \item{n}{numeric. Number of data to be simulated, is a
-  scalar.}
+  scalar. #}
 
   \item{seVar}{Function which returns the contaminated
   variances.}
+
+  \item{spatialCont}{list. Settings for spatial
+  contaminated Data - see defaults}
+
+  \item{temporalCont}{list. Settings for temporal
+  contaminated Data - see defaults}
 }
 \value{
   an object of class simSetup. Needs no further
