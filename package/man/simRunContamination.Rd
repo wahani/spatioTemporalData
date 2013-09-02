@@ -42,7 +42,8 @@
   to add contaminated data.
 }
 \examples{
-setup <- simSetupContamination(nDomains=100, nTime=20, sarCorr=0.5, arCorr=0.5, n = 50)
-output <- simRun(setup)
+output <- simRunContamination(100, 10, c(0, 0.5), c(0, 0.5), n = 200, spatioTemporalMessup=F,
+                             spatialCont = list(sigma = 1, sigmaCont = 10, nDomainsCont = 0),
+                             temporalCont = list(sigma = 1, sigmaCont = 10, nDomainsCont = 2))
 }
 

@@ -121,6 +121,9 @@ simRunnerContamination <- function(nDomains, nTime, sarCorr, arCorr,
   output
 }
 
+#' merge.simSetup
+#' 
+#' @export
 merge.simSetup <- function(setup1, setup2) {
   setup <- setup1
   setup@nDomains <- setup1@nDomains + setup2@nDomains
