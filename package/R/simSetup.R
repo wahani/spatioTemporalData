@@ -41,8 +41,24 @@ simRunner <- function(setup) {
                                 }, 
                                 xdt = xdt, setup@nDomains, setup@nTime)
   slot(setup, "sigmaSE") <- setup@seVar()
+  setup <- setTrueY(setup)
   setup
 }        
+
+setTrueY <- function(simSetup) {
+  # funciton-definition
+  trueY <- function(dat, sigmaE) {
+    dat$trueY <- dat$y - sigmaE 
+    dat
+  }
+  
+  #
+  sigmaE <- as.data.frame(slot(simSetup, "sigma"))
+  dat <- slot(simSetup, "data")
+  dataList <- mapply("trueY", dat, sigmaE, SIMPLIFY = FALSE)
+  slot(simSetup, "data") <- dataList
+  simSetup
+}
 
 simRun <- function(..., mc = F) {
   # Start simulation with given specification

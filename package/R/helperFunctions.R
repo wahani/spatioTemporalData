@@ -1,4 +1,3 @@
-# General Purpose Functions - Helper
 
 getNumberOfCores <- function() {
   # How many cores are available. For Windows always 1.
