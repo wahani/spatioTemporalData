@@ -19,15 +19,11 @@
 #'                              temporalCont = list(sigma = 1, sigmaCont = 10, nDomainsCont = 2))
 #' @export
 simRunContamination <- function(nDomains, nTime, sarCorr, arCorr, 
-#                                    seVar = seSigmaContClosure(nDomains, 
-#                                                               nTime, 
-#                                                               nDomainsCont = 0, 
-#                                                               contFactor = 0, 
-#                                                               randomDomains = FALSE),
-                                   spatialCont = list(sigma = 1, sigmaCont = 10, nDomainsCont = 2),
-                                   temporalCont = list(sigma = 1, sigmaCont = 10, nDomainsCont = 2),
-                                   spatioTemporalMessup = FALSE,
-                                   n = 200) {
+                                seVar = seSigmaClosure1,
+                                spatialCont = list(sigma = 1, sigmaCont = 10, nDomainsCont = 2),
+                                temporalCont = list(sigma = 1, sigmaCont = 10, nDomainsCont = 2),
+                                spatioTemporalMessup = FALSE,
+                                n = 200) {
   
   settingList <- strsplit(levels(interaction(nDomains, nTime, sarCorr, arCorr, sep = "-")), split = "-", fixed = T)
   settingList <- lapply(settingList, as.numeric)
@@ -45,7 +41,7 @@ simRunContamination <- function(nDomains, nTime, sarCorr, arCorr,
                         ))
   
   lapply(setupList, function(setup) simRunnerContamination(setup$nDomains, setup$nTime, setup$sarCorr, setup$arCorr, 
-                                                           #seVar = setup$seVar,
+                                                           seVar = seVar,
                                                            spatialCont = spatialCont,
                                                            temporalCont = temporalCont,
                                                            spatioTemporalMessup = spatioTemporalMessup,
@@ -54,11 +50,7 @@ simRunContamination <- function(nDomains, nTime, sarCorr, arCorr,
 
 
 simRunnerContamination <- function(nDomains, nTime, sarCorr, arCorr, 
-                                  seVar = seSigmaContClosure(nDomains, 
-                                                             nTime, 
-                                                             nDomainsCont = 0, 
-                                                             contFactor = 0, 
-                                                             randomDomains = FALSE),
+                                  seVar = seSigmaClosure1,
                                   spatialCont = list(sigma = 1, sigmaCont = 10, nDomainsCont = 2),
                                   temporalCont = list(sigma = 1, sigmaCont = 10, nDomainsCont = 2),
                                   spatioTemporalMessup = FALSE,
@@ -74,7 +66,7 @@ simRunnerContamination <- function(nDomains, nTime, sarCorr, arCorr,
                arCorr = arCorr,
                sarVar = reSar1Var,
                arVar = reAr1Var,
-               seVar = seSigmaContClosure(nDomainsNonC, nTime),
+               seVar = seVar(nDomainsNonC, nTime),
                sigma1 = spatialCont$sigma,
                sigma2 = temporalCont$sigma,
                #               sigma = seSigmaClosure(nDomains, nTime),
@@ -96,7 +88,7 @@ simRunnerContamination <- function(nDomains, nTime, sarCorr, arCorr,
     setupsCont$Messup@nDomains <- spatialCont$nDomainsCont + temporalCont$nDomainsCont
     setupsCont$Messup@sigma1 <- spatialCont$sigmaCont
     setupsCont$Messup@sigma2 <- temporalCont$sigmaCont
-    setupsCont$Messup@seVar <- seSigmaContClosure(setupsCont$Messup@nDomains, nTime)
+    setupsCont$Messup@seVar <- seVar(setupsCont$Messup@nDomains, nTime)
     setupsCont$Messup@neighbourHood <- w0Matrix(setupsCont$Messup@nDomains)
   } else{
     if(spatialCont$nDomainsCont > 0) {
@@ -104,7 +96,7 @@ simRunnerContamination <- function(nDomains, nTime, sarCorr, arCorr,
       setupsCont$spatial <- setup
       setupsCont$spatial@nDomains <- spatialCont$nDomainsCont
       setupsCont$spatial@sigma1 <- spatialCont$sigmaCont
-      setupsCont$spatial@seVar <- seSigmaContClosure(setupsCont$spatial@nDomains, nTime)
+      setupsCont$spatial@seVar <- seVar(setupsCont$spatial@nDomains, nTime)
       setupsCont$spatial@neighbourHood <- w0Matrix(setupsCont$spatial@nDomains)
     }
     if(temporalCont$nDomainsCont > 0) {
@@ -112,7 +104,7 @@ simRunnerContamination <- function(nDomains, nTime, sarCorr, arCorr,
       setupsCont$temporal <- setup
       setupsCont$temporal@nDomains <- temporalCont$nDomainsCont
       setupsCont$temporal@sigma2 <- temporalCont$sigmaCont
-      setupsCont$temporal@seVar <- seSigmaContClosure(setupsCont$temporal@nDomains, nTime)
+      setupsCont$temporal@seVar <- seVar(setupsCont$temporal@nDomains, nTime)
       setupsCont$temporal@neighbourHood <- w0Matrix(setupsCont$temporal@nDomains)
     }
   }

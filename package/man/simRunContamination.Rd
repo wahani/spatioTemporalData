@@ -3,6 +3,7 @@
 \title{simRunContamination}
 \usage{
   simRunContamination(nDomains, nTime, sarCorr, arCorr,
+    seVar = seSigmaClosure1,
     spatialCont = list(sigma = 1, sigmaCont = 10, nDomainsCont = 2),
     temporalCont = list(sigma = 1, sigmaCont = 10, nDomainsCont = 2),
     spatioTemporalMessup = FALSE, n = 200)
