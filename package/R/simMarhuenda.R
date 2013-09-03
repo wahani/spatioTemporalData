@@ -80,7 +80,8 @@ simSetupMarhuenda <- function(nDomains, nTime, sarCorr, arCorr, n = 1000) {
                sigma2 = 1,
                #               sigma = seSigmaClosure(nDomains, nTime),
                neighbourHood = w0Matrix(nDomains),
-               beta = c(0,1)
+               beta = c(0,1),
+               xdt = spGenerator
                #                xdt = spGenerator(nDomains, nTime)
   )
   setup

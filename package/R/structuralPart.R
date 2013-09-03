@@ -29,3 +29,13 @@ spGenerator <- function(nDomains, nTime) {
   xdtGenerated <- unlist(lapply(1:nDomains, xdt, t = 1:nTime))
   xdtGenerated
 }
+
+spGenerator1 <- function(nDomains, nTime) {
+  # Function to construct bX Part of the model
+  xdtGenerated <- rnorm(nDomains * nTime)
+  xdtGenerated
+}
+
+
+
+

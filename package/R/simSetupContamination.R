@@ -79,7 +79,8 @@ simRunnerContamination <- function(nDomains, nTime, sarCorr, arCorr,
                sigma2 = temporalCont$sigma,
                #               sigma = seSigmaClosure(nDomains, nTime),
                neighbourHood = w0Matrix(nDomainsNonC),
-               beta = c(0,1)
+               beta = c(0,1),
+               xdt = spGenerator1
                #                xdt = spGenerator(nDomains, nTime)
   )
   

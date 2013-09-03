@@ -22,13 +22,12 @@ setClass(Class="simSetup", representation(n = "numeric",
 
 simRunner <- function(setup) {
   # Run simulation for given setup object
-  gc()
   omegaList <- reSarArVar(sarVar = setup@sigma1 * setup@sarVar(W0 = setup@neighbourHood, sarCorr = setup@sarCorr), 
                           arVar = setup@sigma2 * setup@arVar(arCorr = setup@arCorr, nTime = setup@nTime), 
                           outputAsList = TRUE)
   
   Z <- reZ(nDomains=setup@nDomains, nTime=setup@nTime)
-  xdt <- spGenerator(nDomains=setup@nDomains, nTime=setup@nTime)
+  xdt <- setup@xdt(nDomains=setup@nDomains, nTime=setup@nTime)
   re <- reGeneratorMC(omega=omegaList, n = setup@n)
   se <- seGenerator(nDomains=setup@nDomains, nTime=setup@nTime, n=setup@n, sigmaFun = setup@seVar)
   
