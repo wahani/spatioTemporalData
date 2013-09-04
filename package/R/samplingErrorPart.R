@@ -23,7 +23,7 @@ seSigmaClosure1 <- function(nDomains, nTime) {
   force(nDomains); force(nTime)
   function() {
     set.seed(1)
-    abs(runif(nDomains * nTime, 0.5, 1.5))
+    abs(runif(nDomains * nTime, 0.9, 1.1))
   }
 }
 
