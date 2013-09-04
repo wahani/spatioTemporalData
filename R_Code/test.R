@@ -5,8 +5,8 @@ library(spatioTemporalData)
 library(SAE)
 
 output <- simRunContamination(10, 3, c(0.5), c(0.5), n = 200, spatioTemporalMessup=T,
-                              spatialCont = list(sigma = 1, sigmaCont = 40, nDomainsCont = 2),
-                              temporalCont = list(sigma = 1, sigmaCont = 40, nDomainsCont = 3))
+                              spatialCont = list(sigma = 1, sigmaCont = 9, nDomainsCont = 2),
+                              temporalCont = list(sigma = 1, sigmaCont = 9, nDomainsCont = 3))
 
 (output[[1]]@data[[1]])
 

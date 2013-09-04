@@ -42,7 +42,7 @@ simRunner <- function(setup) {
   slot(setup, "sigmaSE") <- setup@seVar()
   setup <- setTrueY(setup)
   setup
-}        
+}     
 
 setTrueY <- function(simSetup) {
   # funciton-definition

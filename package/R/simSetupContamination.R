@@ -22,7 +22,7 @@ simRunContamination <- function(nDomains, nTime, sarCorr, arCorr,
                                 seVar = seSigmaClosure1,
                                 spatialCont = list(sigma = 1, sigmaCont = 10, nDomainsCont = 2),
                                 temporalCont = list(sigma = 1, sigmaCont = 10, nDomainsCont = 2),
-                                spatioTemporalMessup = FALSE,
+                                spatioTemporalMessup = TRUE,
                                 n = 200) {
   
   settingList <- strsplit(levels(interaction(nDomains, nTime, sarCorr, arCorr, sep = "-")), split = "-", fixed = T)
@@ -53,7 +53,7 @@ simRunnerContamination <- function(nDomains, nTime, sarCorr, arCorr,
                                   seVar = seSigmaClosure1,
                                   spatialCont = list(sigma = 1, sigmaCont = 10, nDomainsCont = 2),
                                   temporalCont = list(sigma = 1, sigmaCont = 10, nDomainsCont = 2),
-                                  spatioTemporalMessup = FALSE,
+                                  spatioTemporalMessup = TRUE,
                                   n = 200) {
   
   # setup without cont

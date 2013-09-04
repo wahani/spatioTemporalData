@@ -6,7 +6,7 @@
     seVar = seSigmaClosure1,
     spatialCont = list(sigma = 1, sigmaCont = 10, nDomainsCont = 2),
     temporalCont = list(sigma = 1, sigmaCont = 10, nDomainsCont = 2),
-    spatioTemporalMessup = FALSE, n = 200)
+    spatioTemporalMessup = TRUE, n = 200)
 }
 \arguments{
   \item{nDomains}{numeric. Number of domains, can be a

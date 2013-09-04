@@ -32,10 +32,6 @@ spGenerator <- function(nDomains, nTime) {
 
 spGenerator1 <- function(nDomains, nTime) {
   # Function to construct bX Part of the model
-  xdtGenerated <- rnorm(nDomains * nTime)
+  xdtGenerated <- runif(nDomains * nTime, -1, 1)
   xdtGenerated
 }
-
-
-
-

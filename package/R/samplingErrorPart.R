@@ -23,7 +23,7 @@ seSigmaClosure1 <- function(nDomains, nTime) {
   force(nDomains); force(nTime)
   function() {
     set.seed(1)
-    abs(rnorm(nDomains * nTime, 1))
+    abs(runif(nDomains * nTime, 0.5, 1.5))
   }
 }
 
@@ -34,7 +34,7 @@ seGenerator <- function(nDomains, nTime, n, sigmaFun) {
   #sigma <- seSigmaClosure(nDomains, nTime)
   #sigmaGenerated <- unlist(lapply(1:nDomains, sigmaFun, t = 1:nTime))
   sigmaGenerated <- sigmaFun()
-  samplingError <- lapply(sigmaGenerated, function(sigma) rnorm(n, mean = 0, sd = sigma))
+  samplingError <- lapply(sigmaGenerated, function(sigma) rnorm(n, mean = 0, sd = sqrt(sigma)))
   do.call(rbind, samplingError)
 }
 
