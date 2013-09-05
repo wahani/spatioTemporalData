@@ -1,5 +1,6 @@
+Version 1.1.2
 * uses different generation of sampling errors. Reproducable sequenze of random numbers from U(0.9, 1.1)
-* new generation of regressor. U(-1, 1)
+* new generation of regressor. U(9, 12)
 
 Version 1.1
 * simRunContamination
