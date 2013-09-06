@@ -22,6 +22,7 @@ simRunContamination <- function(nDomains, nTime, sarCorr, arCorr,
                                 seVar = seSigmaClosure1,
                                 spatialCont = list(sigma = 1, sigmaCont = 10, nDomainsCont = 2),
                                 temporalCont = list(sigma = 1, sigmaCont = 10, nDomainsCont = 2),
+                                beta = c(0, 1),
                                 spatioTemporalMessup = TRUE,
                                 n = 200) {
   
@@ -45,7 +46,7 @@ simRunContamination <- function(nDomains, nTime, sarCorr, arCorr,
                                                            spatialCont = spatialCont,
                                                            temporalCont = temporalCont,
                                                            spatioTemporalMessup = spatioTemporalMessup,
-                                                           n = n))
+                                                           n = n, beta = beta))
 }
 
 
@@ -53,6 +54,7 @@ simRunnerContamination <- function(nDomains, nTime, sarCorr, arCorr,
                                   seVar = seSigmaClosure1,
                                   spatialCont = list(sigma = 1, sigmaCont = 10, nDomainsCont = 2),
                                   temporalCont = list(sigma = 1, sigmaCont = 10, nDomainsCont = 2),
+                                   beta = c(0,1),
                                   spatioTemporalMessup = TRUE,
                                   n = 200) {
   
@@ -71,7 +73,7 @@ simRunnerContamination <- function(nDomains, nTime, sarCorr, arCorr,
                sigma2 = temporalCont$sigma,
                #               sigma = seSigmaClosure(nDomains, nTime),
                neighbourHood = w0Matrix(nDomainsNonC),
-               beta = c(0,1),
+               beta = beta,
                xdt = spGenerator1
                #                xdt = spGenerator(nDomains, nTime)
   )
