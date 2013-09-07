@@ -5,10 +5,11 @@ library(spatioTemporalData)
 library(SAE)
 
 output <- simRunContamination(10, 3, c(0.5), c(0.5), n = 200, spatioTemporalMessup=T,
-                              spatialCont = list(sigma = 1, sigmaCont = 9, nDomainsCont = 2),
-                              temporalCont = list(sigma = 1, sigmaCont = 9, nDomainsCont = 3))
+                              spatialCont = list(sigma = 4, sigmaCont = 40, nDomainsCont = 2),
+                              temporalCont = list(sigma = 4, sigmaCont = 40, nDomainsCont = 3),
+                              beta = c(100, 1), scenarioName = "jasdj")
 
-(output[[1]]@data[[1]])
+(output[[1]]@scenarioName)
 
 
 fitSTREBLUP(formula=y~x, dat=output@data[[1]], beta=c(0,1), sigma=c(1,1), rho=c(0.5,0.5))

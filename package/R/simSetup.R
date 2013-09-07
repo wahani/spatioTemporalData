@@ -18,7 +18,8 @@ setClass(Class="simSetup", representation(n = "numeric",
                                           neighbourHood = "matrix",
                                           beta = "numeric",
                                           xdt = "function",
-                                          data = "list"))
+                                          data = "list",
+                                          scenarioName = "character"))
 
 simRunner <- function(setup) {
   # Run simulation for given setup object
