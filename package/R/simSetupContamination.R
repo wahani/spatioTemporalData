@@ -25,7 +25,8 @@ simRunContamination <- function(nDomains, nTime, sarCorr, arCorr,
                                 beta = c(0, 1),
                                 spatioTemporalMessup = TRUE,
                                 n = 200,
-                                scenarioName = "") {
+                                scenarioName = "",
+                                xdt = spGenerator1) {
   
   settingList <- strsplit(levels(interaction(nDomains, nTime, sarCorr, arCorr, sep = "-")), split = "-", fixed = T)
   settingList <- lapply(settingList, as.numeric)
@@ -47,7 +48,8 @@ simRunContamination <- function(nDomains, nTime, sarCorr, arCorr,
                                                            spatialCont = spatialCont,
                                                            temporalCont = temporalCont,
                                                            spatioTemporalMessup = spatioTemporalMessup,
-                                                           n = n, beta = beta, scenarioName = scenarioName))
+                                                           n = n, beta = beta, scenarioName = scenarioName,
+                                                           xdt = xdt))
 }
 
 
@@ -57,7 +59,7 @@ simRunnerContamination <- function(nDomains, nTime, sarCorr, arCorr,
                                   temporalCont = list(sigma = 1, sigmaCont = 10, nDomainsCont = 2),
                                    beta = c(0,1),
                                   spatioTemporalMessup = TRUE,
-                                  n = 200, scenarioName = "") {
+                                  n = 200, scenarioName = "", xdt = spGenerator1) {
   
   # setup without cont
   nDomainsNonC <- nDomains - spatialCont$nDomainsCont - temporalCont$nDomainsCont
@@ -75,7 +77,7 @@ simRunnerContamination <- function(nDomains, nTime, sarCorr, arCorr,
                #               sigma = seSigmaClosure(nDomains, nTime),
                neighbourHood = w0Matrix(nDomainsNonC),
                beta = beta,
-               xdt = spGenerator1,
+               xdt = xdt,
                scenarioName = scenarioName
                #                xdt = spGenerator(nDomains, nTime)
   )

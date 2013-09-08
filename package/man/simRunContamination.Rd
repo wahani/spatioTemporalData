@@ -7,7 +7,7 @@
     spatialCont = list(sigma = 1, sigmaCont = 10, nDomainsCont = 2),
     temporalCont = list(sigma = 1, sigmaCont = 10, nDomainsCont = 2),
     beta = c(0, 1), spatioTemporalMessup = TRUE, n = 200,
-    scenarioName = "")
+    scenarioName = "", xdt = spGenerator1)
 }
 \arguments{
   \item{nDomains}{numeric. Number of domains, can be a

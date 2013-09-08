@@ -23,6 +23,11 @@ spXdtClosure <- function(nDomains, nTime) {
   function(d,t) (bdt(d, t) - adt) * udt(t) + adt
 }
 
+#' Generator for Regressor
+#' 
+#' @details Generator used in Marhuenda (2012)
+#' 
+#' @export
 spGenerator <- function(nDomains, nTime) {
   # Function to construct bX Part of the model
   xdt <- spXdtClosure(nDomains, nTime)
@@ -30,6 +35,11 @@ spGenerator <- function(nDomains, nTime) {
   xdtGenerated
 }
 
+#' Generator for Regressor
+#' 
+#' @details uniformly distributed random number between 9 and 12
+#' 
+#' @export
 spGenerator1 <- function(nDomains, nTime) {
   # Function to construct bX Part of the model
   xdtGenerated <- runif(nDomains * nTime, 9, 12)
